@@ -7,14 +7,10 @@ local save_colorscheme = function(scheme_name)
   file:close()
 end
 
-return {
-  {
-    vim.api.nvim_create_autocmd('ColorScheme', {
-      group = group,
-      callback = function()
-        local matched_scheme = vim.fn.expand '<amatch>'
-        save_colorscheme(matched_scheme)
-      end,
-    }),
-  },
-}
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = group,
+  callback = function()
+    local matched_scheme = vim.fn.expand '<amatch>'
+    save_colorscheme(matched_scheme)
+  end,
+})
